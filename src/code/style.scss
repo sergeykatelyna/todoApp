@@ -1,0 +1,166 @@
+@use "sass:color";
+@use "../assets/font/fonts";
+
+
+$yellow-light: #ffd04f;
+$yellow-dark: #8a702b;
+$dark: #333333;
+
+
+body,
+input,
+button {
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+button,
+input {
+  border-radius: 5px;
+  background-color: color.adjust($yellow-light, $lightness: -10%);
+  border: 2px solid $yellow-dark;
+}
+button {
+  cursor: pointer;
+  &:hover {
+    background-color: color.adjust($yellow-light, $lightness: 10%);
+  }
+}
+input {
+  background-color: color.adjust($yellow-light, $lightness: 25%);
+  &::placeholder {
+    color: #7a7a7a;
+  }
+}
+
+
+.todoForm {
+  width: 500px;
+  margin-top: 50px;
+  padding: 10px;
+  background-color: $dark;
+  > label:first-child {
+    color: color.adjust($yellow-light, $lightness: 10%);
+    text-shadow: 2px 2px 2px color.adjust($yellow-light, $lightness: -30%);
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 1.1px;
+    line-height: 42px;
+  }
+}
+
+.inputElsContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  input {
+    flex-grow: 1;
+    padding: 10px;
+  }
+  button {
+    width: 80px;
+    margin-left: 10px;
+  }
+}
+
+.filtersContainer {
+  text-align: center;
+  border: 2px groove $yellow-dark;
+  border-radius: 10px;
+  legend {
+    padding: 0 10px;
+    color: $yellow-light;
+    font-size: 18px;
+  }
+  input {
+    display: none;
+    &:checked + label {
+      border-color: $yellow-dark;
+      background-color: color.adjust($yellow-light, $lightness: 10%);
+    }
+  }
+  label {
+    display: inline-block;
+    margin-right: 20px;
+    padding: 2px 12px;
+    border-radius: 20px;
+    border: 3px solid color.adjust($yellow-light, $lightness: -10%);
+    background-color: color.adjust($yellow-light, $lightness: -10%);
+    color: black;
+    cursor: pointer;
+  }
+}
+
+.todoList {
+  margin: 30px 0 20px;
+  padding: 0;
+  counter-reset: ulSection;
+  li {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    + li {
+      margin-top: 20px;
+    }
+    *, &::before {
+      flex-shrink: 0;
+      margin: 0;
+      padding: 0;
+      border: none;
+      margin-right: 10px;
+    }
+    span {
+      word-break: break-word;
+      flex-shrink: 1;
+      flex-grow: 1;
+      margin: 0 auto 0 0;
+      line-height: 26px;
+    }
+    input, button {
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+    }
+    button {
+      text-align: center;
+      line-height: 26px;
+    }
+    .todoEditBtn {
+      margin-left: 10px;
+    }
+    .todoRemoveBtn {
+      margin-right: 0;
+      border-radius: 50%;
+      background-color: white;
+      color: red;
+      font-size: 33px;
+      font-weight: 900;
+      &:hover {
+        background-color: red;
+        color: white;
+      }
+    }
+    &::before {
+      counter-increment: ulSection;
+      content: counter(ulSection) ". ";
+      display: block;
+      line-height: 26px;
+    }
+  }
+}
+
+.ResetAllContainer {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+  button {
+    width: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
