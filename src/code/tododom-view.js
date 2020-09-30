@@ -23,7 +23,7 @@ class TodoDom extends TodoList {
       <input type="checkbox" class="todoCompletedBtn" ${
         isDone ? 'checked' : ''
       }>
-      <span>${text}</span>
+      <span ${isDone ? 'class="done"' : ''}>${text}</span>
       <button type="button" class="todoEditBtn">🖊️</button>
       <button type="button" class="todoRemoveBtn">&times;</button>
     `;
@@ -57,7 +57,7 @@ class TodoDom extends TodoList {
 
   filterTodo(filter) {
     this.#todoFilter = filter;
-    this.#renderTodo(filter);
+    this.#renderTodo();
   }
 
   removeTodo(id) {
