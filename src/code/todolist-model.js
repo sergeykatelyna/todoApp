@@ -7,7 +7,7 @@ class TodoList {
 
   constructor() {
     const storageTodos = localStorage.getItem('todoItems');
-    this.#todos = (storageTodos) ? JSON.parse(storageTodos) : [];
+    this.#todos = storageTodos ? JSON.parse(storageTodos) : [];
   }
 
   getTodos(filter) {
@@ -25,9 +25,7 @@ class TodoList {
     if (!Array.isArray(todos)) {
       return;
     }
-
     localStorage.setItem('todoItems', JSON.stringify(todos));
-
     this.#todos = todos;
   }
 
@@ -37,17 +35,13 @@ class TodoList {
       text,
       isDone: false,
     };
-
     const updatedTodos = [...this.getTodos(), newTodo];
-
     this.#setTodos(updatedTodos);
-
     return newTodo;
   }
 
   editTodo(id, text = 'Default value') {
     let editedTodo = null;
-
     const updatedTodos = this.getTodos().map((todo) => {
       if (todo.id === id) {
         editedTodo = {
@@ -56,18 +50,14 @@ class TodoList {
         };
         return editedTodo;
       }
-
       return todo;
     });
-
     this.#setTodos(updatedTodos);
-
     return editedTodo;
   }
 
   checkTodo(id) {
     let checkedTodo = null;
-
     const updatedTodos = this.getTodos().map((todo) => {
       if (todo.id === id) {
         checkedTodo = {
@@ -76,37 +66,28 @@ class TodoList {
         };
         return checkedTodo;
       }
-
       return todo;
     });
-
     this.#setTodos(updatedTodos);
-
     return checkedTodo;
   }
 
   removeTodo(id) {
     let removedTodo = null;
-
     const updatedTodos = this.getTodos().filter((todo) => {
       if (todo.id === id) {
         removedTodo = todo;
         return false;
       }
-
       return true;
     });
-
     this.#setTodos(updatedTodos);
-
     return removedTodo;
   }
 
   removeAllTodos() {
     const oldTodos = this.getTodos();
-
     this.#setTodos([]);
-
     return oldTodos;
   }
 }
