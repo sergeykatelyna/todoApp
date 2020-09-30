@@ -120,6 +120,9 @@ input {
       flex-grow: 1;
       margin: 0 auto 0 0;
       line-height: 26px;
+      &.done {
+        text-decoration: line-through;
+      }
     }
     input, button {
       width: 26px;
