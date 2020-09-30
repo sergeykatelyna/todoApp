@@ -107,11 +107,10 @@ class TodoApp extends TodoDom {
     });
 
     todoForm.addEventListener('change', (e) => {
-      if (e.target.matches('[type="radio"]')) {
+      if (e.target.matches('.filtersContainer [type="radio"]')) {
         const filter = e.target.value;
         this.filterTodo(filter);
-      }
-      if (e.target.matches('[type="checkbox"]')) {
+      } else if (e.target.matches('.todoList [type="checkbox"]')) {
         const liToCheck = e.target.closest('LI');
         this.checkTodo(liToCheck.id);
       }
